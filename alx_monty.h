@@ -40,6 +40,29 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct g_var - golbal variables
+ * @file: file name
+ * @buff: Getline buffer
+ * @tmp: Getline counter
+ * @dict: instruction dictionary
+ * @head: pointer to list
+ * @line_number: Stores file current line
+ * @MODE: Program configuration stack or queue
+ */
+typedef struct g_var
+{
+	FILE *file;
+	char *buff;
+	size_t tmp;
+	instruction_t *dict;
+	stack_t *head;
+	unsigned int line_number;
+	int MODE;
+} global_vars;
+
+extern global_vars var;
+
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **doubly, unsigned int cline);
@@ -63,6 +86,12 @@ char *_strtoky(char *s, char *d);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void *_calloc(unsigned int nmemb, unsigned int size);
 int _strcmp(char *s1, char *s2);
+
+int start_vars(global_vars *var);
+instruction_t *create_instru();
+int call_funct(global_vars *var, char *opcode);
+void free_all(void);
+int _isdigit(char *string);
 
 /* the doubly linked list*/
 stack_t *add_dnodeint_end(stack_t **head, const int n);
