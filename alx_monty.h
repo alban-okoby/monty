@@ -4,10 +4,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <ctype.h>
+
+/**
+ * struct stack_s - Doubly linked list representation of a stack (or queue)
+ * @n: Integer
+ * @prev: Points to the previous element of the stack (or queue)
+ * @next: Points to the next element of the stack (or queue)
+ *
+ * Description: Doubly linked list node structure
+ * for stack, queues, LIFO, FIFO
+ */
+typedef struct alx_stack_s
+{
+	int n;
+	struct alx_stack_s *prev;
+	struct alx_stack_s *next;
+} stack_t;
 
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);

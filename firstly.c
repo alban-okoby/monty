@@ -10,6 +10,7 @@
 void _pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
+	(void)line_number;
 
 	while (current != NULL)
 	{
@@ -29,6 +30,7 @@ void _push(stack_t **stack, unsigned int line_number)
 {
 	char *arg = strtok(NULL, " \t\n");
 	int value;
+	stack_t *new_node = malloc(sizeof(stack_t));
 
 	if (arg == NULL)
 	{
@@ -43,8 +45,6 @@ void _push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
-	stack_t *new_node = malloc(sizeof(stack_t));
 
 	if (new_node == NULL)
 	{
